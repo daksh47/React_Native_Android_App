@@ -59,6 +59,7 @@ then clone this repo on your machine using ( git clone https://github.com/daksh4
 
 then open cmd and navigate to the directory where all the above upload files are present then hit
  - npm i -g expo-cli
+ - npm install
  - npm start
 
 if you are using a physical device
