@@ -7,14 +7,17 @@ import {
   TouchableOpacity,
   ToastAndroid,
   ActivityIndicator,
+  Dimensions
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState, useEffect } from "react";
+import Constants from 'expo-constants';
 
 export default function App() {
   const MAX_USR = 80;
   const MAX_LD = 10;
 
+  const { width, height } = Dimensions.get('window');
   const [data, setData] = useState([]);
   const [cnt, setCnt] = useState(-1);
 
@@ -37,7 +40,7 @@ export default function App() {
    */
   useEffect(() => {
     if (isPasswordVisible) sethPass(pass);
-    else sethPass("•".repeat(8));
+    else sethPass("•".repeat(12));
   }, [isPasswordVisible]);
 
   /**
@@ -160,7 +163,6 @@ export default function App() {
           <ActivityIndicator size="large" />
         </View>
       )}
-
       {/* profile section */}
       {visibility && (
         <View>
@@ -175,7 +177,7 @@ export default function App() {
 
       {/* display user data section */}
       {visibility && (
-        <ScrollView style={styles.sv}>
+        <ScrollView style={styles.sv} showsHorizontalScrollIndicator={false}>
           <Text style={styles.txt}>
             <Text style={{ fontWeight: "bold" }}>First Name :</Text> {fn}
           </Text>
@@ -192,7 +194,7 @@ export default function App() {
           <View style={styles.txtP}>
             <Text style={styles.txtC}>
               <Text style={{ fontWeight: "bold" }}>Password : </Text>
-              <Text>{hpass}</Text>
+              <Text >{hpass}</Text>
             </Text>
             <TouchableOpacity
               onPress={() => setIsPasswordVisible(!isPasswordVisible)}
@@ -233,14 +235,16 @@ const styles = StyleSheet.create({
   container: {
     // fill the whole screen with white background and its content/children as center
     flex: 1,
+    paddingTop: Constants.statusBarHeight,
     backgroundColor: "#fff",
     justifyContent: "center",
+    alignItems:'center'
   },
 
   name: {
     // 25 logical pixels below the previous sibling/upper component
     marginTop: 25,
-    fontSize: 25,
+    fontSize: 23,
     textAlign: "center",
   },
 
@@ -253,7 +257,7 @@ const styles = StyleSheet.create({
     // widht and height of the avatar set to 150 logical pixels for uniform images
     width: 150,
     height: 150,
-    marginTop: 70,
+    marginTop: 10,
     borderRadius: 75,
     backgroundColor: "yellow",
     borderColor: "black",
@@ -263,16 +267,14 @@ const styles = StyleSheet.create({
   navi: {
     // dispaly the navigation button in a row with space between them
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginStart: 30,
-    marginBottom: 30,
-    marginEnd: 30,
+    marginTop:20,
+    marginBottom:20,
   },
 
   sv: {
     // scrollview margins to provide space
     marginTop: 20,
-    marginBottom: 20,
+    flexGrow:0
   },
 
   button: {
@@ -282,7 +284,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: "#f2f2f2",
     borderRadius: 15,
-    width: 130,
+    width: 110,
     padding: 10,
   },
 
@@ -293,8 +295,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     borderWidth: 1,
     borderRadius: 15,
-    width: 130,
+    width: 110,
     padding: 10,
+    marginStart:30,
   },
 
   btnTxt: {
@@ -317,8 +320,8 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     borderRadius: 15,
     padding: 13,
-    fontSize: 20,
-    marginBottom: 20,
+    fontSize: 17,
+    marginBottom: 13,
     marginEnd: 20,
     marginStart: 20,
   },
@@ -329,7 +332,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "lightgrey",
     borderRadius: 15,
-    fontSize: 20,
+    fontSize: 16,
   },
 
   txtP: {
@@ -339,7 +342,7 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     borderRadius: 15,
     padding: 13,
-    marginBottom: 20,
+    marginBottom: 13,
     marginEnd: 20,
     marginStart: 20,
   },
