@@ -57,8 +57,9 @@ download, install and setup npm ( refer : https://nodejs.org/en )
 
 then clone this repo on your machine using ( git clone https://github.com/daksh47/React_Native_Android_App.git )
 
-then open cmd and navigate to the directory where all the above upload files are present
-then hit npm start
+then open cmd and navigate to the directory where all the above upload files are present then hit
+ - npm i -g expo-cli
+ - npm start
 
 if you are using a physical device
  - you will see a qr code in your cmd
